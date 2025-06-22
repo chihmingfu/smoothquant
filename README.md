@@ -1,4 +1,5 @@
-# SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models 
+# SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models
+
 [[paper](https://arxiv.org/abs/2211.10438)] [[slides](assets/SmoothQuant.pdf)][[video](https://youtu.be/U0yvqjdMfr0)]
 
 ![intuition](figures/intuition.png)
@@ -31,7 +32,7 @@ and achieve faster inference speed with half the number of GPUs compared to FP16
 conda create -n smoothquant python=3.8
 conda activate smoothquant
 pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
-pip install transformers==4.36.0 accelerate datasets zstandard
+pip install transformers==4.36.0 accelerate datasets zstandard   sentencepiece   protobuf 
 
 python setup.py install
 ```
@@ -87,8 +88,9 @@ python smoothquant/ppl_eval.py \
 
 Results:
 
+
 | Model        | Method                              | PPL   | Alpha |
-| ------------ | ----------------------------------- | ----- | ----- |
+| -------------- | ------------------------------------- | ------- | ------- |
 | Llama-2-7B   | FP16                                | 5.474 |       |
 |              | [SQ W8A8](examples/ppl_eval.sh#L1)  | 5.515 | 0.85  |
 | Llama-2-13B  | FP16                                | 4.950 |       |
@@ -112,7 +114,7 @@ For measured speedup, we recommend using the NVIDIA [TensorRT-LLM](https://githu
 
 ## Results
 
-- SmoothQuant migrates **part of** the quantization difficulties from activation to weights, which smooths out the systematic outliers in activation, making both weights and activations **easy to quantize**. 
+- SmoothQuant migrates **part of** the quantization difficulties from activation to weights, which smooths out the systematic outliers in activation, making both weights and activations **easy to quantize**.
 
 ![migrate](figures/migrate.jpg)
 
